@@ -73,6 +73,8 @@ function App() {
           newHistory[timestamp] = d
           setDay(1)
           setHistory(newHistory)
+          setAttempts(0)
+          setDatetime(null)
           localStorage.setItem('history', JSON.stringify(newHistory))
         }
       }
