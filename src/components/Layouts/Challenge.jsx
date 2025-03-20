@@ -32,14 +32,14 @@ export default function Challenge(props) {
             <div className='helper'>
                 <div>
                     {[...Array(DEFINITIONS[word].length).keys()].map((e, i) => {
-                        const randoStyle = inputVal.length < e + 1 ? '' : inputVal.split('')[i] == DEFINITIONS[word].split('')[i] ? ' correct' : ' incorrect'
+                        const randoStyle = inputVal.length < e + 1 ? '' : inputVal.split('')[i].toLowerCase() == DEFINITIONS[word].split('')[i].toLowerCase() ? ' correct' : ' incorrect'
                         return (
                             <div className={' ' + (randoStyle)} key={i}></div>
                         )
                     })}
                 </div>
                 <input value={inputVal} onChange={(e) => {
-                    if (e.target.value == DEFINITIONS[word]) {
+                    if (e.target.value.toLowerCase() == DEFINITIONS[word].toLowerCase()) {
                         // answer correct, increment index and reset
                         handleIncrementAttemps()
                         setInputVal('')
