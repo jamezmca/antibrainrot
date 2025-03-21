@@ -1,5 +1,6 @@
 import React from 'react'
 import { calcLevel, calculateAccuracy, calculateNewWords } from '../utils'
+import ProgressBar from './ProgressBar'
 
 export default function Stats(props) {
     const { name, day, attempts } = props
@@ -30,17 +31,7 @@ export default function Stats(props) {
                     <h4>{(calculateAccuracy(attempts, day) * 100).toFixed(1)}%</h4>
                 </div>
             </div>
-            <div className='level'>
-                <div>
-                    <h4>lvl {flooredLvl}</h4>
-                </div>
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((e, i) => {
-                    return (
-                        <div className='level-bar' key={i} />
-                    )
-                })}
-                <div className='xp' style={{ width: `${remainder}%` }} />
-            </div>
+            <ProgressBar text={`lvl ${flooredLvl}`} remainder={remainder} />
         </div>
     )
 }

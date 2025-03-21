@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import DATA from '../../utils/year_plan.json'
 import DEFINITIONS from '../../utils/maori_dictionary.json'
 import { isEncountered, shuffle } from '../../utils'
+import ProgressBar from '../ProgressBar'
 
 export default function Challenge(props) {
     const { day, daysWords, handleChangePage, handleIncrementAttemps, handleCompleteDay } = props
@@ -21,7 +22,7 @@ export default function Challenge(props) {
 
 
     return (
-        <section id='challenge'>
+        <section id='challenge' className=''>
             {/* <p>1/{words_list.length}</p> */}
             {/* <div className='card challenge-card'>
                 <h3 className='header-text'>Day {day}</h3>
@@ -55,6 +56,7 @@ export default function Challenge(props) {
                     setInputVal(e.target.value)
                 }} type='text' placeholder='Enter the english translation...' />
             </div>
+
             <div className='challenge-btns'>
                 <button onClick={() => { handleChangePage(1) }} className='card-button-secondary'>
                     <h6>Quit</h6>
@@ -66,6 +68,7 @@ export default function Challenge(props) {
                     <h6>I forgot</h6>
                 </button>
             </div>
+            <ProgressBar text={`${wordIndex} / ${listToLearn.length} `} remainder={wordIndex * 100 / listToLearn.length} />
             {/* <button className='link-button quit-btn'>
                 Quit
             </button> */}

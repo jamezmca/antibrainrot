@@ -83,6 +83,7 @@ section {
   border-radius: var(--border-radius-small);
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .level>div:first-of-type {
@@ -178,9 +179,21 @@ section {
 }
 
 .challenge-btns {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+  width: 100%;
+}
+
+.challenge-btns button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.challenge-btns button h6 {
+  white-space: nowrap;
+  padding: 0.5rem 0;
 }
 
 .helper {
