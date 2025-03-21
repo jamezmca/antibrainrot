@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DATA from '../../utils/year_plan.json'
 import DEFINITIONS from '../../utils/maori_dictionary.json'
-import { isEncountered } from '../../utils'
+import { isEncountered, shuffle } from '../../utils'
 
 export default function Challenge(props) {
     const { day, daysWords, handleChangePage, handleIncrementAttemps, handleCompleteDay } = props
@@ -9,7 +9,7 @@ export default function Challenge(props) {
     const [inputVal, setInputVal] = useState('')
     const [showDefinition, setShowDefinition] = useState(false)
 
-    const [listToLearn, setListToLearn] = useState([...daysWords, ...daysWords, ...daysWords, ...daysWords])
+    const [listToLearn, setListToLearn] = useState([...daysWords, ...shuffle(daysWords), ...shuffle(daysWords), ...shuffle(daysWords)])
 
     const word = listToLearn[wordIndex]
     const isNewWord = showDefinition || (!isEncountered(day, word) && wordIndex < daysWords.length)
