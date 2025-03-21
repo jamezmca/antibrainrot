@@ -42,7 +42,7 @@ export function calculateNewWords(day) {
 export function calculateAccuracy(a, day) {
     let totalWords = generateWordArr(day, -1)
     console.log(a, totalWords.length * 2)
-    return (totalWords.length * 2) / a
+    return (totalWords.length * 4) / a
 }
 
 export function isEncountered(day, word) {

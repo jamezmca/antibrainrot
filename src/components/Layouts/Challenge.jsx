@@ -9,7 +9,7 @@ export default function Challenge(props) {
     const [inputVal, setInputVal] = useState('')
     const [showDefinition, setShowDefinition] = useState(false)
 
-    const [listToLearn, setListToLearn] = useState([...daysWords, ...daysWords])
+    const [listToLearn, setListToLearn] = useState([...daysWords, ...daysWords, ...daysWords, ...daysWords])
 
     const word = listToLearn[wordIndex]
     const isNewWord = showDefinition || (!isEncountered(day, word) && wordIndex < daysWords.length)
