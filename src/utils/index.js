@@ -41,7 +41,6 @@ export function calculateNewWords(day) {
 
 export function calculateAccuracy(a, day) {
     let totalWords = generateWordArr(day, -1)
-    console.log(a, totalWords.length * 2)
     return (totalWords.length * 4) / a
 }
 
@@ -59,7 +58,6 @@ export function calcLevel(day) {
     let avgLevel = Object.keys(d).reduce((acc, curr) => {
         return { num: acc.num + 1, total: acc.total + d[curr] }
     }, { total: 0, num: 0 })
-    console.log(avgLevel)
     return avgLevel.total / avgLevel.num
 }
 

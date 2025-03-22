@@ -41,4 +41,3 @@ const jsonData = JSON.parse(rawData);
 const schedule = generateSpacedRepetitionSchedule(jsonData);
 fs.writeFileSync('schedule.json', JSON.stringify(schedule, null, 2));
 
-console.log(JSON.stringify(schedule, null, 2));

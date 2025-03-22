@@ -55,9 +55,14 @@ function App() {
   useEffect(() => {
     if (!localStorage) { return }
     if (localStorage.getItem('name')) {
-      console.log(localStorage.getItem('name'))
       setName(localStorage.getItem('name'))
       setSelectedDisplay(1)
+    }
+    if (localStorage.getItem('attempts')) {
+      setAttempts(parseInt(localStorage.getItem('attempts')))
+    }
+    if (localStorage.getItem('history')) {
+      setHistory(JSON.parse(localStorage.getItem('history')))
     }
     if (localStorage.getItem('day')) {
       const { day: d, datetime: dt } = JSON.parse(localStorage.getItem('day'))
@@ -66,26 +71,26 @@ function App() {
 
       if (d > 1 && dt) {
         const diff = countdownIn24Hours(dt)
-        if (diff.hours < 0 || diff.minutes < 0 || diff.seconds < 0) {
+        if (diff < 0) {
           console.log('Failed challenge')
-          const newHistory = { ...history }
-          const timestamp = Date.now()
-          newHistory[timestamp] = d
+          let newHistory = {}
+          const timestamp = new Date(dt)
+          const formattedTimestamp = timestamp.toString().split(' ').slice(1, 4).join(' ')
+          newHistory[formattedTimestamp] = d
+          setHistory(curr => {
+            let temp = { ...newHistory, ...curr }
+            newHistory = temp
+            return newHistory
+          })
           setDay(1)
-          setHistory(newHistory)
           setAttempts(0)
           setDatetime(null)
+          localStorage.setItem('day', JSON.stringify({ day: 1, datetime: null }))
           localStorage.setItem('history', JSON.stringify(newHistory))
         }
       }
     }
-    if (localStorage.getItem('attempts')) {
-      setAttempts(parseInt(localStorage.getItem('attempts')))
-    }
-    if (localStorage.getItem('history')) {
-      setHistory(JSON.parse(localStorage.getItem('history')))
-    }
-  }, [history])
+  }, [])
 
   const displays = {
     0: <HeroPage handleCreateAccount={handleCreateAccount} name={name} setName={setName} />,

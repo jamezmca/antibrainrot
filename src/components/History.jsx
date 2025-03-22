@@ -12,12 +12,13 @@ export default function History(props) {
             ) : (
                 <div className='history-list'>
                     {historyKeys.map((h, hi) => {
+                        const dateKey = (new Date(h)).toString().split(' ').slice(1, 4).join(' ')
                         return (
                             <div className='card-button-secondary' key={hi}>
                                 <div>
                                     <p>Started</p>
                                     <h6>
-                                        {Date(h).split(' ').slice(1, 4).join(' ')}
+                                        {dateKey}
                                     </h6>
                                 </div>
                                 <div>

@@ -8,7 +8,7 @@ export default function Stats(props) {
     const currLvl = calcLevel(day)
     const flooredLvl = Math.floor(currLvl)
     const remainder = (currLvl - flooredLvl) * 100
-    console.log(remainder)
+
     return (
         <div className='card stats-card'>
             <div className='welcome-text'>
